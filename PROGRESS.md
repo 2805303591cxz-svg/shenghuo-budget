@@ -14,7 +14,10 @@
 
 ## 发布状态
 
-- Netlify 站点 `shenghuo-budget` 已创建，但账号部署额度已用完，线上尚未发布。
-- 可执行的免费替代方案：公开 GitHub 源码仓库 + GitHub Pages；应用数据仍只保存在手机本地。
-- 待用户确认发布渠道后完成线上地址、HTTP 200、二维码解码和手机安装验收。
+- 已发布到 GitHub Pages：https://2805303591cxz-svg.github.io/shenghuo-budget/
+- 源码仓库：https://github.com/2805303591cxz-svg/shenghuo-budget
+- 线上 HTTPS、manifest、Service Worker、断网重开均通过真浏览器验收。
+- 二维码位于 `tests/screenshots/live-qr.svg`，已反解确认指向线上地址。
+- Netlify 站点已创建，但账号部署额度已用完，保留为备用方案。
+
 

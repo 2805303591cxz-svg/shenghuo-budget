@@ -56,7 +56,9 @@ node tools/make_icons.mjs
 
 https://2805303591cxz-svg.github.io/shenghuo-budget/
 
-推送 `main` 分支后，GitHub Actions 会自动构建 `dist/` 并发布到 GitHub Pages。Netlify 仅保留为备用方案；当前 Netlify 账号的部署额度已用完。
+![生活费规划二维码](tests/screenshots/live-qr.svg)
+
+推送 `main` 分支后，GitHub Actions 会自动构建 `dist/` 并发布到 GitHub Pages。二维码已通过本机二进制反解验证。Netlify 仅保留为备用方案；当前 Netlify 账号的部署额度已用完。
 
 ## 有意没做
 
@@ -64,4 +66,5 @@ https://2805303591cxz-svg.github.io/shenghuo-budget/
 - 不做后台系统通知，提醒只在打开应用时出现。
 - 不接入银行账单。
 - 不自动猜测洗衣或吹风频率；按实际使用点快捷记账。
+
 
