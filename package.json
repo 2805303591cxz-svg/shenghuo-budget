@@ -1,0 +1,13 @@
+{
+  "name": "shenghuo-budget",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build_site.mjs",
+    "serve": "node tools/serve.mjs --root dist --port 8123",
+    "test": "node --test",
+    "icons": "node tools/make_icons.mjs",
+    "deploy": "node tools/netlify.mjs deploy --dir dist"
+  }
+}
