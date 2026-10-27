@@ -332,6 +332,8 @@ export function startAnnualCycle(state, options) {
 
   const previous = getActiveCycle(state);
   const previousTotals = previous ? computeCycleTotals(state, previous.id, todayIso) : { cashCents: 0, accountBalancesCents: {} };
+  const negativeAccounts = Object.entries(previousTotals.accountBalancesCents || {}).filter(([, amount]) => amount < 0);
+  assert(negativeAccounts.length === 0, "有账户余额为负数，请先核对到账和消费记录");
   const carryoverByAccount = previousTotals.accountBalancesCents || { cash: Math.max(0, previousTotals.cashCents) };
   const carryoverCents = Object.values(carryoverByAccount).reduce((sum, amount) => sum + Math.max(0, amount), 0);
   const previousId = previous?.id || null;
@@ -433,6 +435,8 @@ export function addTransfer(state, payload) {
   assert(payload.fromAccountId !== payload.toAccountId, "转出和转入账户不能相同");
   const cycle = getActiveCycle(state);
   assert(cycle, "找不到当前周期");
+  const before = computeCycleTotals(state, cycle.id, payload.date);
+  assert((before.accountBalancesCents[payload.fromAccountId] || 0) >= payload.amountCents, "转出账户余额不足");
   const next = cloneState(state);
   if (!Array.isArray(next.transfers)) next.transfers = [];
   next.transfers.push({
@@ -613,6 +617,7 @@ export function validateState(state) {
   }
   return state;
 }
+
 
 
 

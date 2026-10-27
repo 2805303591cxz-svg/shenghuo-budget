@@ -120,6 +120,12 @@ test("微信和支付宝初始余额分别正确，账户互转不改变总现�
   assert.equal(totals.cashCents, 12200);
   assert.equal(totals.accountBalancesCents.wechat, 5300);
   assert.equal(totals.accountBalancesCents.alipay, 6900);
+  assert.throws(() => addTransfer(state, {
+    amountCents: 6000,
+    fromAccountId: "wechat",
+    toAccountId: "alipay",
+    date: TODAY
+  }), /余额不足/);
 });
 
 test("分类预算合计不能超过扣除安全缓冲后的金额", () => {
@@ -209,6 +215,7 @@ test("备份结构校验会拒绝缺字段的数据", () => {
   assert.doesNotThrow(() => validateState(structuredClone(state)));
   assert.throws(() => validateState({ schemaVersion: 1, settings: {}, cycles: [] }), /预算周期/);
 });
+
 
 
 
